@@ -5,6 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.aregyan.compose.ui.theme.JetpackComposeBoilerplateTheme
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.compose.rememberNavController
+import com.aregyan.compose.ui.items.ItemViewModel
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -12,7 +15,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JetpackComposeBoilerplateTheme {
-                ComposeApp()
+                //ComposeApp()
+                val viewModel: ItemViewModel = hiltViewModel()
+                val navController = rememberNavController()
+                NavGraph(navController, viewModel)
             }
         }
     }
